@@ -1,0 +1,66 @@
+
+/* @tailwind utilities; */
+@import "tailwindcss";
+
+.headerLayout{
+    width: 100%;
+    height: 180px;
+    background-color: #ffffff;
+}
+.logo{
+    width: 242.76px;
+    height: 120px;
+}
+.navBar{
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff;
+    display: flex;
+    padding: 0 20px;
+    border: 1px solid #e0e0e0;
+}
+.navList{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+}
+.navItems{
+    font-size: 18px;
+    color: #002870;
+    font-family: 'Source Sans Pro';
+    text-decoration: none;
+    margin-right: 20px;
+}
+.heading1{
+    font-size: 62px;
+    font-family: 'Source Sans Pro';
+}
+.heading2{
+    font-size: 48px;
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+}
+.heading3{
+    font-size: 34px;
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+}
+.bodyText{
+    font-size: 24px;
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+}
+.smallText{
+    font-size: 16px;
+    font-family: 'Source Sans Pro';
+    font-weight: Regular;
+}
+.buttonText{
+    font-size: 18px;
+    font-family: 'Source Sans Pro';
+    font-weight: Semibold;
+}
+
