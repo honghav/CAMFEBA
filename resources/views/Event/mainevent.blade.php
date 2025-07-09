@@ -23,18 +23,23 @@
 {{-- Tittle --}}
 
     <h1 class="heading1 text-center">Event</h1>
-    
+    {{-- <button><a href="{{route('login')}}">Loing</a></button> --}}
+    @auth
+        @if(auth()->user()->isAdmin())
+         <h1>admin</h1>             
+        @endif
+    @endauth
     <div class="bg-gray-100 py-10 px-4 min-h-screen overflow-y-auto">
         <div class="space-y-6 flex flex-col items-center">
             @foreach ($events as $event )
                 
             <div class="cardEvent w-[1200px] h-[350px] bg-white flex rounded-[25px] p-[25px] border-2 border-solid mx-auto">
 
-                <div class="eventDetail p-[30px] w-[600]">
+                <div class="eventDetail p-[10px] w-[600px]">
 
                     <div class="description w-full h-[3/4]">
 
-                        <h2 class="heading3">{{$event->title}}</h2>
+                        <h2 class="heading3 ">{{$event->title}}</h2>
                         <p class="smallText text-gra-300">{{$event->description}}</p>
                     </div>
                     <div class="schedule ">
@@ -55,10 +60,10 @@
                 
                 </div>
                 
-                <div class="eventCover w-[600] h-[300] rounded-[20px] overflow-hidden">
-                   <a href="{{route('eventdetail')}}">
-                   <img src="{{asset('storage/images/coverevent.jpg')}}" class="w-full h-full object-cover rounded-[20px]" alt="none">
+                <div class="eventCover w-[600px] h-[300px] rounded-[20px] ">
+                    <a href="{{ route('events.detail', ['id' => $event->id]) }}"> go to detal
                     </a>
+                    <img src="{{asset('storage/images/coverevent.jpg')}}" class="w-full h-full object-cover rounded-[20px]" alt="none">
                 </div>
             
             </div>

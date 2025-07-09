@@ -1,22 +1,28 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-//  View Layout Header
-Route::get('/header', function () {
-    return view('Layout.Header');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events.main');
 });
 
+require __DIR__.'/auth.php';
 
-// Event View
-Route::get('/event', function () {
-    return view('Event.mainevent');
+Route::middleware(['web'])->group(function () {
+    Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events.main');
+    Route::get('/events/{id}', [EventsController::class, 'detailPageEvent'])->name('events.detail');
 });
-
-Route::get('/eventdetail' , function(){
-    return view('Event.eventdetail');
-})->name('eventdetail');

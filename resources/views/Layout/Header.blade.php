@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout</title>
     {{-- <link rel="stylesheet" href="../css/Layout.css"> --}}
-        @vite(['resources/css/Layout.css'])
+        {{-- @vite(['resources/css/Layout.css']) --}}
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body >
@@ -16,8 +21,8 @@
             <div class="logo">
                 <img src="{{asset('storage/images/logo-camfeba.jpg')}}" alt="null">
             </div>
-            <div class="navBar">
-                <ul class="navList">
+            <div class="navBar w-full h-[45px] ">
+                <ul class="navList flex border border-solid border-black mb-[10px]">
                     <li class="navItems pr-[20px]"><a href="">Homepage</a></li>
                     <li class="navItems pr-[20px]" ><a href="">About Us</a></li>
                     <li class="navItems pr-[20px]"><a href="">Event</a></li>
