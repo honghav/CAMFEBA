@@ -20,8 +20,6 @@ class IsAdmin
             return redirect()->route('events');
         }
         return $next($request);
-
-
     }
 
     

@@ -24,14 +24,14 @@ class EventRequest extends FormRequest
         return [
         'title'          => 'required|string|max:255',
         'description'    => 'required|string',
+        'cover'          => 'nullable|string', // Or 'nullable|image' if it's a file later
         'start_date'     => 'required|date',
-        'lacation'       => 'nullable|string',
-        'cover'          => 'nullable|string',
+        'location'       => 'nullable|string',
         'price'          => 'nullable|numeric',
-        'sart_time'      => 'nullable|date_format:H:i',
+        'start_time'      => 'nullable|date_format:H:i',
         'end_time'       => 'nullable|date_format:H:i|after_or_equal:sart_time',
         'register_link'  => 'required|url',
-        'end_register'  => 'nullable|date|after_or_equal:start_date',
-        ];
+        'end_register'   => 'nullable|date|after_or_equal:start_date',
+    ];
     }
 }

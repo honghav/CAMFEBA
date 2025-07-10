@@ -13,4 +13,19 @@ use App\Models\Events;
         {
             return Events::where('id' , $id)->first();
         }
+        public function create(array $data)
+        {
+            return Events::create($data);
+        }
+        public function updateEvent($id, array $data)
+        {
+            $findData = $this->getEventById($id);
+
+            return $findData->update($data);
+        }
+        public function dropEvent($id)
+        {
+            $findData = $this->getEventById($id);
+            return $findData->delete();
+        }
     }

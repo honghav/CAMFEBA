@@ -18,9 +18,10 @@ class Kernel extends HttpKernel
             // API middleware
         ],
     ];
-
+    
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         // Add your custom middleware here
+        'role' => \App\Http\Middleware\IsAdmin::class
     ];
 }

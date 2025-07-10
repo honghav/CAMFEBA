@@ -22,4 +22,28 @@
         {
             return $this->eventRepository->getEventById($id);
         }
+        public function requestEvent($request)
+        {
+            $data = $request->only([
+                'title',
+                'description',
+                'cover',
+                'start_date',
+                'location',
+                'price',
+                'start_time',
+                'end_time',
+                'register_link',
+                'end_register'
+            ]); 
+            return $data;
+        }
+        public function setNewsEvent($request)
+        {
+            $data = $this->requestEvent($request);
+
+            $setNewsEvent = $this->eventRepository->create($data);
+            return $setNewsEvent;
+        }
+        
     }

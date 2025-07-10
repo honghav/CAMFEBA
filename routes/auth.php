@@ -35,12 +35,14 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
 
-    
+        
     });
     
     Route::middleware('auth')->group(function () {
-    Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events.main');
-    Route::get('/events/{id}', [EventsController::class, 'detailPageEvent'])->name('events.detail');
+        // Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events.main');
+        // Route::get('/events/{id}', [EventsController::class, 'detailPageEvent'])->name('events.detail');
+        
+    // Route::post('/events', [EventsController::class, 'createNewEvent'])->name('events.store');
     
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
