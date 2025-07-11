@@ -27,3 +27,7 @@ Route::get('/events/{id}', [EventsController::class, 'detailPageEvent'])->name('
 require __DIR__.'/auth.php';
 Route::middleware(['web'])->group(function () {
 });
+
+Route::get('/eventsComponent', function () {
+    return view('previewEventCard');
+});

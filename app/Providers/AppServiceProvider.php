@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use App\Repository\EventsRepository;
 use App\Repository\Interface\EventsRepositoryInterface;
-
+use Illuminate\Foundation\Console\EventCacheCommand;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Blade::component('event-card-component', EventCacheCommand::class);
     }
 }
