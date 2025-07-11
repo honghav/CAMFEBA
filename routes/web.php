@@ -29,5 +29,5 @@ Route::middleware(['web'])->group(function () {
 });
 
 Route::get('/eventsComponent', function () {
-    return view('previewEventCard');
+    return view('previewComponentCard');
 });

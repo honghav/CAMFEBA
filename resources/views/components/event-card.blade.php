@@ -45,7 +45,7 @@
 
                 <div class="eventCover w-[5800px] h-[340px] p-[10px] rounded-[20px] overflow-hidden">
                     {{-- <h2>{{$cover}}</h2> --}}
-                    <a href="{{ route('events.detail', ['id' => $id]) }}" class="block w-full h-full">
+                    <a href="{{ $id }}" class="block w-full h-full">
                         <img 
                             src="{{asset('storage/images/coverevent.jpg')}}" 
                             class="w-full h-full object-cover hover:scale-105 transition duration-300 rounded-[10px]"
