@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use App\View\Components\EventCardComponent;
 use App\View\Components\ServiceCard;
+use App\View\Components\SubServiceCard;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
         //
         Blade::component('event-card', EventCardComponent::class);
         Blade::component('service-card', ServiceCard::class);
+        Blade::component('sub-service-card', SubServiceCard::class);
     }
 }
