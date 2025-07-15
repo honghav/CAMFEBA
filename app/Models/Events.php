@@ -11,7 +11,9 @@ class Events extends Model
     //
     use Hasfactory; 
     protected $table = 'events';
-    protected $fillable = [
+    protected $fillable = 
+    [
+    'id',
     'title',
     'description',
     'cover',
@@ -21,6 +23,7 @@ class Events extends Model
     'start_time',
     'end_time',
     'register_link',
-    'end_register',
+    'end_register'
     ];  
+
 }

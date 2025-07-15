@@ -40,9 +40,9 @@
         }
         public function setNewsEvent($request)
         {
-            $data = $this->requestEvent($request);
+            // $data = $this->requestEvent($request);
 
-            $setNewsEvent = $this->eventRepository->create($data);
+            $setNewsEvent = $this->eventRepository->create($request);
             return $setNewsEvent;
         }
         

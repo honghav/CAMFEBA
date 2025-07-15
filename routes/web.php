@@ -18,9 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events.main');
+    Route::post('/events/store',[EventsController::class,'store'])->name('events.store');
 });
-Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events.main');
-Route::post('/events/store',[EventsController::class,'store'])->name('events.store');
+Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events');
 Route::get('/events/create',[EventsController::class,'create'])->name('events.create');
 Route::get('/events/{id}', [EventsController::class, 'detailPageEvent'])->name('events.detail');
 

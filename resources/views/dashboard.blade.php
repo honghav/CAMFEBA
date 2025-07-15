@@ -18,9 +18,9 @@
 
     @auth
         @if(auth()->user()->isAdmin())
-         <h1><button><a href="{{route('events.main')}}"> go to event</a></button></h1>
+         <h1><button><a href="{{route('events')}}"> go to event</a></button></h1>
          @else
-         <h1><button><a href="{{route('events.main')}}"> go to event</a></button></h1>
+         <h1><button><a href="{{route('events')}}"> go to event</a></button></h1>
         <h1>Guest</h1>               
         @endif
     @endauth

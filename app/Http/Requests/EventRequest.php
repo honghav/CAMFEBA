@@ -31,7 +31,7 @@ class EventRequest extends FormRequest
         'start_time'      => 'nullable|date_format:H:i',
         'end_time'       => 'nullable|date_format:H:i|after_or_equal:sart_time',
         'register_link'  => 'required|url',
-        'end_register'   => 'nullable|date|after_or_equal:start_date',
+        'end_register'   => 'nullable|date',
     ];
     }
 }

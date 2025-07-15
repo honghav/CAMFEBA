@@ -17,7 +17,7 @@ class ServiceCard extends Component
      */
     public function __construct(?int $id = null, ?string $title = null , ?string $cover = null)
     {
-        $this->id;
+        $this->id = $id;
         $this->title = $title ?? "false Titte Service";
         $this->cover = $cover ?? "storage\images\coverService.jpg";
     }

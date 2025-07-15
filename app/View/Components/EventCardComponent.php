@@ -37,10 +37,10 @@ class EventCardComponent extends Component
     ?float $price = null,
     ?string $location = null
     ) {
-        $this->$id = $id;
+        $this->id = $id;
         $this->title = $title ?? 'Default Title';
         $this->description = $description ?? 'Default description text';
-        $this->cover = $cover ?? '/images/default-cover.jpg';
+        $this->cover = $cover ?? '/images/coverevent.jpg';
         $this->start_date = $start_date;
         $this->start_time = $start_time ? Carbon::parse($start_date) : null;
         $this->end_time = $end_time;

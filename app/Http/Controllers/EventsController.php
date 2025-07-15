@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
+use App\Models\Events;
 use App\Services\EventsService;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -35,11 +36,26 @@ class EventsController extends Controller
         return view('Event.create');
     }
     public function store(EventRequest $request) 
-    {
+    {   
         
-         $this->eventsService->setNewsEvent($request->validated());
+        $validated = $request->validated();
+
+        // dd($validated);
+        
+        
+        // $event = new Events($validated);
+        // $event->save();
+
+
+         $event = $this->eventsService->setNewsEvent($request->validated());
         // dd($createnew);            
         // success: redirect to event list with success message
-        return redirect()->route('events.main')->with('success', 'Event created successfully!');
+        return redirect()->route('events')->with('success', 'Event created successfully!');
+        
+        // return response()->json([
+        // 'message' => 'Event created successfully!',
+        // 'data' => $validated
+        // ], 201);
+
     }
 }
