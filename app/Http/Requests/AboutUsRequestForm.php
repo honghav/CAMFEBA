@@ -23,13 +23,14 @@ class AboutUsRequestForm extends FormRequest
     {
        
             return [
-                'title' => [
-                    function ($attribute, $value, $fail) {
-                        if ($value === 'forbidden') {
-                            $fail("The $attribute is invalid.");
-                        }
-                    },
-                ],
+                'title'          => 'required|string|max:255',
+                // 'title' => [
+                //     function ($attribute, $value, $fail) {
+                //         if ($value === 'forbidden') {
+                //             $fail("The $attribute is invalid.");
+                //         }
+                //     },
+                // ],
                 'content' => 'required|string',
             ];
     }

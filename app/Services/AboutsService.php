@@ -30,12 +30,12 @@ class AboutsService
 
     public function updateAboutById($id , array $data)
     {
-        // $request = $this->aboutsRepository->getAboutById($id);
-        // return $this->aboutsRepository->updateAbout($id, $request);
+        $request = $this->aboutsRepository->getAboutById($id);
+        return $this->aboutsRepository->updateAbout($id, $request);
 
-        $about = Abouts::findOrFail($id);
-            $about->update($data);
-            return $about;
+        // $about = Abouts::findOrFail($id);
+        //     $about->update($data);
+        //     return $about;
     }
 
     public function deleteAboutById($id)

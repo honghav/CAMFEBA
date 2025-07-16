@@ -28,7 +28,7 @@
                     <li><a href="#">Technical Assistance</a></li>
                     <li><a href="{{route('events')}}">Events</a></li>
                     <li><a href="#">Membership</a></li>
-                    <li><a href="#">Project</a></li>
+                    <li><a href="{{route('project.index')}}">Project</a></li>
                     <li><a href="#">Our Advocacy</a></li>
                     <li><a href="{{route('dashboard')}}">Profile</a></li>
                 </ul>

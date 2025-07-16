@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('/aboutus',AboutsController::class);
+Route::resource('/project',ProjectController::class);
 
 // Route::put('/aboutus/{aboutu}', [AboutsController::class, 'update'])->name('aboutus.update');
 
