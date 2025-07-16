@@ -16,7 +16,8 @@ use App\Models\Events;
         public function create(array $data)
         {
             $event = new Events($data);
-            $event->save();
+            return $event->save();
+            
         }
         public function updateEvent($id, array $data)
         {

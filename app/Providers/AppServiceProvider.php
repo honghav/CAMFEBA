@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repository\AboutsRepository;
 use App\Repository\EventsRepository;
+use App\Repository\Interface\AboutsRepositoryInterface;
 use App\Repository\Interface\EventsRepositoryInterface;
 use Illuminate\Foundation\Console\EventCacheCommand;
 use Illuminate\Support\Facades\Blade;
@@ -22,7 +24,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
         EventsRepositoryInterface::class,
         EventsRepository::class
-    );
+        );
+        $this->app->bind(
+            AboutsRepositoryInterface::class,
+            AboutsRepository::class
+        );
 
     }
 

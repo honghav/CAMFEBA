@@ -17,17 +17,22 @@
     {{-- Navvigation Bar --}}
 
     <nav>
-        <div class="headerLayout">
-            <div class="logo">
-                <img src="{{asset('storage/images/logo-camfeba.jpg')}}" alt="null">
+        <div class="flex flex-col h-[180px] ">
+            <div class="h-[120px] w-[full] ">
+                <img src="{{asset('storage/images/logo-camfeba.jpg')}}" alt="null" class="h-full object-contain">
             </div>
-            <div class="navBar w-full h-[45px] ">
-                <ul class="navList flex border border-solid border-black mb-[10px]">
-                    <li class="navItems pr-[20px]"><a href="">Homepage</a></li>
-                    <li class="navItems pr-[20px]" ><a href="">About Us</a></li>
-                    <li class="navItems pr-[20px]"><a href="">Event</a></li>
+            {{-- <div class="flex  w-full h-[60px] border border-solid border-black"> --}}
+                 <ul class="flex justify-between  font-sans font-semibold text-[18px] px-4 py-2 text-[#002870] mr-[15px] ml-[15px]">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="{{route('aboutus.index')}}">About Us</a></li>
+                    <li><a href="#">Technical Assistance</a></li>
+                    <li><a href="{{route('events')}}">Events</a></li>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><a href="#">Our Advocacy</a></li>
+                    <li><a href="{{route('dashboard')}}">Profile</a></li>
                 </ul>
-            </div>
+            {{-- </div> --}}
         </div>
     </nav>
     {{-- Main Content --}}

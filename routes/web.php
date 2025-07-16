@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,12 @@ Route::middleware('auth')->group(function () {
     // Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events.main');
     Route::post('/events/store',[EventsController::class,'store'])->name('events.store');
 });
+
+Route::resource('/aboutus',AboutsController::class);
+
+// Route::put('/aboutus/{aboutu}', [AboutsController::class, 'update'])->name('aboutus.update');
+
+// Route::put('aboutus/{aboutu}', [AboutsController::class, 'update'])->name('aboutus.update');
 Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events');
 Route::get('/events/create',[EventsController::class,'create'])->name('events.create');
 Route::get('/events/{id}', [EventsController::class, 'detailPageEvent'])->name('events.detail');
