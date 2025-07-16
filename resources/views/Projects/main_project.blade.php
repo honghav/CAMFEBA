@@ -3,20 +3,23 @@
 <div>
     <h1 class="text-center">Welcome To page Project</h1>
      <x-primary-button type="submit" class="btn btn-danger"><a href="{{route('project.create')}}">Create New project </a></x-primary-button>
+    <div class="flex">
 
-    @foreach ($project as $pro)
-        <h1>{{$pro->title}}</h1>
-        <div class="prose">
-            {!! \Illuminate\Support\Str::words($pro->content, 50, '...') !!}
-        </div>
+        @foreach ($project as $pro)
+        <x-project-crad 
+        :id="$pro->id"
+        :title="$pro->title"
+        :cover="$pro->cover"
+        >
         <x-primary-button type="submit" class="btn btn-danger"><a href="{{route('project.edit',$pro->id)}}">Edit project </a></x-primary-button>
-
         <form action="{{ route('project.destroy', $pro->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
-                @csrf
-                @method('DELETE')
-                <x-primary-button type="submit" class="btn btn-danger">Delete</x-primary-button>
+            @csrf
+            @method('DELETE')
+            <x-primary-button type="submit" class="btn btn-danger">Delete</x-primary-button>
         </form>
+    </x-project-crad>
     @endforeach
+</div>
 
     {{-- <form action="{{ isset($project) ? route('project.update', ['project' => $project->id]) : route('project.store') }}" 
       method="POST" enctype="multipart/form-data" class="space-y-4">
@@ -83,19 +86,6 @@
 
 
 </div>
-<script src="//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('editor', {
-        toolbar: [
-            { name: 'document', items: [ 'Source', '-', 'Save' ] },
-            { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo' ] },
-            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
-            { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule' ] },
-            { name: 'paragraph', items: [ 'NumberedList', 'BulletedList' ] }
-        ],
-        height: 300,
-        removePlugins: 'elementspath',
-    });
-</script>
+
 
 @endsection

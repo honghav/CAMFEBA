@@ -61,4 +61,19 @@
             </button>
         </div>
     </form>
+
+    <script src="//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor', {
+        toolbar: [
+            { name: 'document', items: [ 'Source', '-', 'Save' ] },
+            { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo' ] },
+            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
+            { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule' ] },
+            { name: 'paragraph', items: [ 'NumberedList', 'BulletedList' ] }
+        ],
+        height: 300,
+        removePlugins: 'elementspath',
+    });
+</script>
 </div>
