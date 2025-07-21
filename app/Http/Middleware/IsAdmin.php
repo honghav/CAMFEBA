@@ -19,6 +19,9 @@ class IsAdmin
         if (Auth::check() && User::isAdmin()) {
             return redirect()->route('events');
         }
+        elseif (Auth::check() && User::isUser()) {
+            return redirect()->route('events');
+        }
         return $next($request);
     }
 

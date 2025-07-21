@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Repository\AboutsRepository;
+use App\Repository\DashboardRepository;
 use App\Repository\EventsRepository;
 use App\Repository\Interface\AboutsRepositoryInterface;
+use App\Repository\Interface\DashboardRepositoryInterface;
 use App\Repository\Interface\EventsRepositoryInterface;
 use App\Repository\Interface\ProjectRepositoryInterface;
 use App\Repository\ProjectRepository;
@@ -15,6 +17,7 @@ use App\View\Components\EventCardComponent;
 use App\View\Components\ProjectCrad;
 use App\View\Components\ServiceCard;
 use App\View\Components\SubServiceCard;
+use App\View\Components\tableOfUser;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,6 +39,10 @@ class AppServiceProvider extends ServiceProvider
             ProjectRepositoryInterface::class,
             ProjectRepository::class
         );
+        $this->app->bind(
+            DashboardRepositoryInterface::class,
+            DashboardRepository::class
+        );
 
     }
 
@@ -49,5 +56,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('service-card', ServiceCard::class);
         Blade::component('sub-service-card', SubServiceCard::class);
         Blade::component('project-crad', ProjectCrad::class);
+        Blade::component('table-of-user', tableOfUser::class);
     }
 }

@@ -2,7 +2,11 @@
 @section('content')
 <div>
     <h1 class="text-center">Welcome To page Project</h1>
-     <x-primary-button type="submit" class="btn btn-danger"><a href="{{route('project.create')}}">Create New project </a></x-primary-button>
+    @auth
+        @if(auth()->user()->isUser())
+        <x-primary-button type="submit" class="btn btn-danger"><a href="{{route('project.create')}}">Create New project </a></x-primary-button>
+        @endif
+    @endauth
     <div class="flex">
 
         @foreach ($project as $pro)

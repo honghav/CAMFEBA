@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -27,25 +28,51 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    private function handleProfileUpload($image): string
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $filename = time() . '_' . $image->getClientOriginalName();
+        return $image->storeAs('profiles', $filename, 'public');
+    }
+
+    public function store(Request $request): RedirectResponse
+{
+    $validated = $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        'role' => ['required', 'string'],
+        'profile' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+    ]);
+
+    $profilePath = null;
+    try {
+        if ($request->hasFile('profile')) {
+            $profilePath = $this->handleProfileUpload($request->file('profile'));
+        }
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'admin',
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => $validated['role'] ?? 'member',
+            'profile' => $profilePath,
         ]);
 
         event(new Registered($user));
-
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect()->route('dashboard')->with('success', 'User registered successfully');
+
+    } catch (\Exception $e) {
+        // Clean up uploaded file if user creation fails
+        if ($profilePath && Storage::disk('public')->exists($profilePath)) {
+            Storage::disk('public')->delete($profilePath);
+        }
+
+        return back()
+            ->withInput()
+            ->withErrors(['error' => 'Registration failed: ' . $e->getMessage()]);
     }
+}
+
 }

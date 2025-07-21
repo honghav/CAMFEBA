@@ -8,14 +8,15 @@
         {{-- @vite(['resources/css/Layout.css']) --}}
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet" />
+        <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body >
     {{-- Navvigation Bar --}}
-
     <nav>
         <div class="flex flex-col h-[180px] ">
             <div class="h-[120px] w-[full] ">
@@ -30,7 +31,7 @@
                     <li><a href="#">Membership</a></li>
                     <li><a href="{{route('project.index')}}">Project</a></li>
                     <li><a href="#">Our Advocacy</a></li>
-                    <li><a href="{{route('dashboard')}}">Profile</a></li>
+                    <li><a href="{{route('table.index')}}"> Proflie</a></li>
                 </ul>
             {{-- </div> --}}
         </div>
