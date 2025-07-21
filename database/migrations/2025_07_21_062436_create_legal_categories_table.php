@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('legal_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('description')->nullable();
+            $table->string('cover')->unique();
             $table->timestamps();
         });
     }

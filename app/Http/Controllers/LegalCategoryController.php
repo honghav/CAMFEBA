@@ -2,17 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CatLegalFormRequest;
 use App\Models\LegalCategory;
 use Illuminate\Http\Request;
+use App\Services\CategoryLegalService;
+use Illuminate\Support\Facades\Log;
 
 class LegalCategoryController extends Controller
 {
+    public $legalCategoryService;
+
+    public function __construct(CategoryLegalService $legalCategoryService)
+    {
+        $this->legalCategoryService = $legalCategoryService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+        $categories = $this->legalCategoryService->getAllCategories();
+        return view('ServicePage.mainservice', compact('categories'));
     }
 
     /**
@@ -21,22 +33,59 @@ class LegalCategoryController extends Controller
     public function create()
     {
         //
+        return view('legal_categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CatLegalFormRequest $request)
     {
-        //
+        try {
+            $validated = $request->validated();
+            
+            // Debug validation data
+            Log::info('Validation passed:', $validated);
+            
+            $result = $this->legalCategoryService->createCategory($validated);
+            
+            if ($result['success']) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => $result['message'],
+                    'data' => $result['data'] ?? null
+                ], 200);
+            }
+
+            return response()->json([
+                'status' => 'error',
+                'message' => $result['message'],
+                'errors' => $result['errors'] ?? []
+            ], 422);
+
+        } catch (\Exception $e) {
+            Log::error('Category creation failed:', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to create category',
+                'errors' => $request->validator->errors()
+            ], 422);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(LegalCategory $legalCategory)
+    public function show( $id)
     {
         //
+        $category = $this->legalCategoryService->getCategoryById($id);
+
+        return view('ServicePage.legalcategory', compact('category'));
     }
 
     /**
@@ -50,9 +99,12 @@ class LegalCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LegalCategory $legalCategory)
+    public function update(CatLegalFormRequest $request, $id)
     {
         //
+        $data = $request->validated();
+        $this->legalCategoryService->updateCategory($id, $data);
+        return redirect()->route('legal_categories.index')->with('success', 'Category updated successfully.');
     }
 
     /**
@@ -61,5 +113,7 @@ class LegalCategoryController extends Controller
     public function destroy(LegalCategory $legalCategory)
     {
         //
+        $this->legalCategoryService->deleteCategory($legalCategory->id);
+        return redirect()->route('legal_categories.index')->with('success', 'Category deleted successfully.');
     }
 }

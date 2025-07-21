@@ -6,11 +6,12 @@ use App\Repository\AboutsRepository;
 use App\Repository\DashboardRepository;
 use App\Repository\EventsRepository;
 use App\Repository\Interface\AboutsRepositoryInterface;
+use App\Repository\CategoryLegalRepository;
+use App\Repository\Interface\CategoryLegalRepositoryInterface;
 use App\Repository\Interface\DashboardRepositoryInterface;
 use App\Repository\Interface\EventsRepositoryInterface;
 use App\Repository\Interface\ProjectRepositoryInterface;
 use App\Repository\ProjectRepository;
-use Illuminate\Foundation\Console\EventCacheCommand;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use App\View\Components\EventCardComponent;
@@ -42,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             DashboardRepositoryInterface::class,
             DashboardRepository::class
+        );
+        $this->app->bind(
+            CategoryLegalRepositoryInterface::class,
+            CategoryLegalRepository::class
         );
 
     }

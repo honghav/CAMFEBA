@@ -4,7 +4,9 @@ use App\Http\Controllers\AboutsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\LegalCategoryController;
 use App\Http\Controllers\ProjectController;
+use App\Models\LegalCategory;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/events/store',[EventsController::class,'store'])->name('events.store');
 });
 
+
 Route::resource('/aboutus',AboutsController::class);
+Route::resource('/service',LegalCategoryController::class);
 Route::resource('/project',ProjectController::class);
 
 // Route::put('/aboutus/{aboutu}', [AboutsController::class, 'update'])->name('aboutus.update');
