@@ -11,7 +11,7 @@ class SubServiceCard extends Component
     public $id;
     public $title;
     public $releaseDate;
-    public $category;
+    public $type;
     public $cover;
     public $khmer;
     public $english;
@@ -22,7 +22,7 @@ class SubServiceCard extends Component
         ?int $id,
         ?string $title,
         ?string $releaseDate,
-        ?string $category,
+        ?string $type,
         ?string $cover,
         ?string $khmer,
         ?string $english
@@ -32,7 +32,7 @@ class SubServiceCard extends Component
         $this->id = $id;
         $this->title = $title ?? 'Empty';
         $this->releaseDate = $releaseDate;
-        $this->category = $category;
+        $this->type = $type;
         $this->cover = $cover;
         $this->khmer = $khmer;
         $this->english = $english;

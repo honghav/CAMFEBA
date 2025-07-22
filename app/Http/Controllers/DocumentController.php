@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DocumentRequestForm;
 use App\Models\Document;
+use App\Services\CategoryLegalService;
 use Illuminate\Http\Request;
 use App\Services\DocumentsService;
+use App\Models\LegalCategory;
+use Illuminate\Container\Attributes\Log;
+use Illuminate\Support\Facades\Log as FacadesLog;
 
 class DocumentController extends Controller
 {
     public $documentService;
-    public function __construct(DocumentsService $documentService)
+    public $legalCategoryService;
+    public function __construct(DocumentsService $documentService, CategoryLegalService $legalCategoryService)
     {
         $this->documentService = $documentService;
+        $this->legalCategoryService = $legalCategoryService;
     }
     /**
      * Display a listing of the resource.
@@ -20,8 +26,9 @@ class DocumentController extends Controller
     public function index()
     {
         //
+        $category = $this->legalCategoryService->getCategoryById(1);
         $documents = $this->documentService->getAllDocuments();
-        return view('documents.index', compact('documents'));
+        return view('ServicePage.alldocument', compact('documents','category'));
     }
 
     /**
@@ -29,8 +36,17 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
-        return view('documents.create');
+        // Format categories for BladeWind select
+        $categories = LegalCategory::all()->mapWithKeys(function ($item) {
+            return [$item->id => $item->name];
+        })->toArray();
+
+        // Debug categories
+        // FacadesLog::info('Categories:', $categories);
+
+        return view('ServicePage.formCreate', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -42,7 +58,7 @@ class DocumentController extends Controller
         $validated = $request->validated();
         $document = $this->documentService->createDocument($validated);
         if ($document) {
-            return redirect()->route('documents.index')->with('success', 'Document created successfully');
+            return redirect()->route('document.index')->with('success', 'Document created successfully');
         } else {
             return redirect()->back()->with('error', 'Failed to create document');
         }

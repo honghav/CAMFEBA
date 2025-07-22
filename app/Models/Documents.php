@@ -14,8 +14,12 @@ class Documents extends Model
         'cover',
         'file_path',
         'published_at',
+        'type',
         'status', // free, paid
         'legal_category_id'
+    ];
+    protected $casts = [
+        'published_at' => 'datetime'
     ];
     public function legalCategory()
     {

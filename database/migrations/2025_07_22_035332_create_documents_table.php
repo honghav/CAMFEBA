@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('cover')->nullable();
             $table->string('file_path');
             $table->date('published_at')->nullable();
+            $table->enum('type', ['Royal_kram', 'Sub_decree', 'Ministry_order', 'Other'])->default('Other');
             $table->enum('status',['free','paid'])->default('free'); // draft, published, archived
             $table->foreignId('legal_category_id')->constrained('legal_categories')->onDelete('cascade');
             $table->timestamps();

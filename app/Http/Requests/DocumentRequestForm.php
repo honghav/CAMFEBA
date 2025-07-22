@@ -27,6 +27,7 @@ class DocumentRequestForm extends FormRequest
             'cover' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
             'file_path' => ['required', 'file', 'mimes:pdf,doc,docx'],
             'published_at' => ['nullable', 'date'],
+            'type' => ['required', 'string', 'in:Royal_kram,Sub_decree,Ministry_order,Other'],
             'status' => ['required', 'in:free,paid'],
             'legal_category_id' => ['required', 'exists:legal_categories,id'],
         ];

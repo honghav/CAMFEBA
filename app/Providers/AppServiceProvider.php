@@ -48,6 +48,10 @@ class AppServiceProvider extends ServiceProvider
             CategoryLegalRepositoryInterface::class,
             CategoryLegalRepository::class
         );
+        $this->app->bind(
+            \App\Repository\Interface\DocumentsRepositoryInterface::class,
+            \App\Repository\DocumentsRepository::class
+        );
 
     }
 

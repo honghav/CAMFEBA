@@ -34,4 +34,9 @@ class DocumentsRepository implements DocumentsRepositoryInterface
             $document = $this->getDocumentById($id);
             return $document->delete();
         }
+
+        public function getDocumentsByCategory($categoryId)
+        {
+            return Documents::where('legal_category_id', $categoryId)->get();
+        }
     }

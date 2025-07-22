@@ -2,7 +2,7 @@
     'id',
     'title',
     'releaseDate',
-    'category',
+    'type',
     'cover',
     'khmer',
     'english'
@@ -11,7 +11,7 @@
 
 <div class="w-[350px] h-[500px] rounded-[10px] bg-white mt-[20px]">
     <div class="w-[350px] h-[280px] rounded-[15px]">
-        <a href="{{$id}}">
+        <a href="{{route('document.show',$id)}}">
             <img 
             src="{{$cover ? asset($cover) : asset('storage/images/coverService.jpg')}}" 
             alt="{{$title}}"
@@ -21,7 +21,7 @@
     </div>
     <div class="ml-[10px]">
         <h1 class= "font-sans text-[24px] font-semibold">{{$title}}</h1>
-        <p class="font-sans font-regular font-[16px] ">{{$category}}</p>
+        <p class="font-sans font-regular font-[16px] ">{{$type}}</p>
         <p class="font-sans font-regular font-[16px] text-gray-600">{{$releaseDate}}</p>
     </div>
     <div class="flex justify-end mr-[20px]">

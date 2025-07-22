@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\LegalCategoryController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\DocumentController;
 use App\Models\LegalCategory;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('/aboutus',AboutsController::class);
 Route::resource('/service',LegalCategoryController::class);
 Route::resource('/project',ProjectController::class);
-
+Route::resource('/document',DocumentController::class);
 // Route::put('/aboutus/{aboutu}', [AboutsController::class, 'update'])->name('aboutus.update');
 
 // Route::put('aboutus/{aboutu}', [AboutsController::class, 'update'])->name('aboutus.update');

@@ -22,6 +22,10 @@
         {
             return $this->documentsRepository->getDocumentById($id);
         }
+        public function getDocumentsByCategory($categoryId)
+        {
+            return $this->documentsRepository->getDocumentsByCategory($categoryId);
+        }
 
         public function createDocument(array $data)
         {
