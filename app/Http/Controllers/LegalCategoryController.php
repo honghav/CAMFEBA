@@ -24,7 +24,7 @@ class LegalCategoryController extends Controller
     {
         //
         $categories = $this->legalCategoryService->getAllCategories();
-        return view('ServicePage.mainservice', compact('categories'));
+        return view('ServicePage.legalcategory', compact('categories'));
     }
 
     /**

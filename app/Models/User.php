@@ -53,11 +53,19 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+    public function isSupAdmin()
+    {
+        return $this->role === 'super-admin';
+    }
     public function isUser()
     {
         return $this->role === 'guest';
     }
-    public function isMember(): HasOne
+    public function isMember()
+    {
+        return $this->role === 'member';
+    }
+    public function isSubMember(): HasOne
     {
         return $this->hasOne(Members::class, 'user_id', 'id');
     }

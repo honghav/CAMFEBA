@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <h1>{{$currentUser->name}}::{{$currentUser->role}}</h1>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -37,6 +38,37 @@
                             name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="role" :value="__('Role')" />
+            
+            @if($currentUser->role === 'superadmin')
+                <select id="role" 
+                        name="role" 
+                        class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                >
+                    <option value="admin">Admin</option>
+                    <option value="member">Member</option>
+                </select>
+            @elseif($currentUser->role === 'member')
+                <x-text-input id="role" 
+                    class="block mt-1 w-full"
+                    type="text"
+                    name="role"
+                    value="submember"
+                    readonly
+                />
+            @else
+                <x-text-input id="role" 
+                    class="block mt-1 w-full"
+                    type="text"
+                    name="role"
+                    value="member"
+                    readonly
+                />
+            @endif
+
+            <x-input-error :messages="$errors->get('role')" class="mt-2" />
         </div>
         
 

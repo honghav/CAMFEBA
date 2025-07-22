@@ -13,5 +13,9 @@ class LegalCategory extends Model
         'description',
         'cover',
     ];
+    public function documents()
+    {
+        return $this->hasMany(Documents::class, 'legal_category_id');
+    }
 
 }

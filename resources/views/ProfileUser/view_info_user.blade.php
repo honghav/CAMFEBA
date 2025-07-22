@@ -2,19 +2,24 @@
 
 @section('content')
 <div>
-    <x-bladewind::button
-        size="tiny"
-        onclick="showModal('form-Create')"
-    >
-        Create
-    </x-bladewind::button>
+    @auth
+        @if(auth()->user()->isUser() || auth()->user()->isAdmin())
+        <x-bladewind::button
+            size="tiny"
+            {{-- onclick="showModal('form-Create')" --}}
+        >
+            <a href="{{route('register')}}">Register news User</a>
+        </x-bladewind::button>
+        @endif
+    @endauth
 
+    <h1>{{$currentUser->name}}</h1>
     <x-bladewind::modal
         backdrop_can_close="false"
         name="form-Create"
-        ok_button_action="saveProfile()"
-        ok_button_label="Create"
-        close_after_action="false"
+        {{-- ok_button_action="saveProfile()" --}}
+        {{-- ok_button_label="Create" --}}
+        {{-- close_after_action="false" --}}
     >
         <form method="post" action="{{ route('register') }}" class="profile-form" enctype="multipart/form-data">
             @csrf

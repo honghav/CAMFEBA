@@ -36,12 +36,23 @@ class DashboardController extends Controller
     //     return view('dashboard', compact('users'));
     // }
 
-
-    public function index()
+    private function SelectUser($role)
     {
-        $selectedadmin = User::where('role', 'member')->get();
-        return view('ProfileUser.view_info_user', compact('selectedadmin'));
-
+      if($role === 'admin')
+        {
+            return User::where('role', 'member')->get();
+        } elseif ($role === 'member') {
+            return User::where('role', 'sub-member')->get();
+        } else {
+            return User::all();
+        }
+    }
+    public function index()
+    {           
+        $currentUser = Auth::user();
+        $selectedadmin = $this->SelectUser($currentUser->role);
+        // $selectedadmin = User::where('role', 'member')->get();
+        return view('ProfileUser.view_info_user', compact('selectedadmin', 'currentUser'));
     }
 
     /**

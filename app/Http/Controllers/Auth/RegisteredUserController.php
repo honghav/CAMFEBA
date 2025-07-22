@@ -15,12 +15,15 @@ use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
+
     /**
      * Display the registration view.
      */
     public function create(): View
     {
-        return view('auth.register');
+        $currentUser = Auth::user();
+
+        return view('auth.register', compact('currentUser'));
     }
 
     /**
@@ -59,9 +62,9 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect()->route('dashboard')->with('success', 'User registered successfully');
+        return redirect()->route('table.index')->with('success', 'User registered successfully');
 
     } catch (\Exception $e) {
         // Clean up uploaded file if user creation fails
