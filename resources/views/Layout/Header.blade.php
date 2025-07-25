@@ -51,6 +51,24 @@
                     <li><a href="{{route('table.index')}}"> Proflie</a></li>
                 </ul>
             {{-- </div> --}}
+       <div class="relative group flex items-center">
+            <a href="{{ route('project.index') }}" class="hover:text-black">
+                About Us
+            </a>
+            <div class="flex items-center ml-1 cursor-pointer">
+                <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M5.5 7l4.5 4 4.5-4H5.5z"/>
+                </svg>
+            </div>
+
+            <div
+                class="absolute mt-6 w-60 bg-white rounded shadow-lg text-gray-800 z-20 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200">
+                <a href="{{ route('events') }}" class="block px-4 py-2 hover:bg-gray-100">Events</a>
+                <a href="{{ route('project.index') }}" class="block px-4 py-2 hover:bg-gray-100">About Us</a>
+            </div>
+        </div>
+
+
         </div>
     </nav>
     {{-- Main Content --}}
