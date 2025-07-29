@@ -12,5 +12,5 @@
     {!! $projectById->content !!}
     </div>
 </div>
-<
+
 @endsection
