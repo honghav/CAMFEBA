@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MemberPage;
 
+use App\Http\Controllers\Controller;
 use App\Models\Members;
 use Illuminate\Http\Request;
 

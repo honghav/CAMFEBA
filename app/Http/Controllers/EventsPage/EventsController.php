@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\EventsPage;
 
 use App\Http\Requests\EventRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Events;
 use App\Services\EventsService;
 use Illuminate\Http\Request;

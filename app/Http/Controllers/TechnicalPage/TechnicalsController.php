@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TechnicalPage;
 
 use App\Models\Technicals;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class TechnicalsController extends Controller

@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\AboutsController;
+use App\Http\Controllers\AboutusPage\AboutsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EventsController;
-use App\Http\Controllers\LegalCategoryController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EventsPage\EventsController;
+use App\Http\Controllers\TechnicalPage\LegalCategoryController;
+use App\Http\Controllers\ProjectPage\ProjectController;
+use App\Http\Controllers\TechnicalPage\DocumentController;
 use App\Models\LegalCategory;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;

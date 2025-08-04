@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+namespace App\Http\Controllers\LayoutsPage;
 
 use App\Models\Layouts;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LayoutsController extends Controller

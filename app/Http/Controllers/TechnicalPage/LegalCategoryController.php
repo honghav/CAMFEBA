@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TechnicalPage;
 
 use App\Http\Requests\CatLegalFormRequest;
+use App\Http\Controllers\Controller;
 use App\Models\LegalCategory;
 use Illuminate\Http\Request;
 use App\Services\CategoryLegalService;

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AboutusPage;
 
 use App\Http\Requests\AboutUsRequestForm;
 use App\Models\Abouts;
+use App\Http\Controllers\Controller;
 use App\Services\AboutsService;
 use Illuminate\Http\Request;
 

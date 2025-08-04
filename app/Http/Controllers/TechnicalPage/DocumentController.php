@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TechnicalPage;
 
 use App\Http\Requests\DocumentRequestForm;
 use App\Models\Document;
 use App\Services\CategoryLegalService;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\DocumentsService;
 use App\Models\LegalCategory;

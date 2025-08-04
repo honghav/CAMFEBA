@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TechnicalPage;
 
 use App\Models\Another_Services;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AnotherServicesController extends Controller

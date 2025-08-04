@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProjectPage;
 
 use App\Http\Requests\ProjectRequestForm;
+use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class ProjectController extends Controller
     {
         //
         $project = $this->projectService->selectProject();
-        return view('Projects.main_project', compact('project'));
+        return view('ProjectsPage.main_project', compact('project'));
 
     }
 
@@ -32,7 +33,7 @@ class ProjectController extends Controller
     public function create()
     {
         //
-        return view('Projects.form_project');
+        return view('ProjectsPage.form_project');
 
     }
 
@@ -56,7 +57,7 @@ class ProjectController extends Controller
     {
         //
         $projectById = $this->projectService->getProject($id); 
-        return view('Projects.detail_project' , compact('projectById'));
+        return view('ProjectsPage.project_subpage' , compact('projectById'));
     }
 
     /**
@@ -66,7 +67,7 @@ class ProjectController extends Controller
     {
         //
         $project = $this->projectService->getProject($id); 
-        return view('Projects.form_project', compact('project'));
+        return view('ProjectsPage.form_project', compact('project'));
     }
 
     /**
@@ -78,12 +79,14 @@ class ProjectController extends Controller
         $validated = $request->validated();
         
         $update = $this->projectService->updateProject($id , $validated);
-        return response()->json(
-            [
-                'message' => 'Update data is success',
-                'data' => $update
-                ]
-            );
+        // return response()->json(
+        //     [
+        //         'message' => 'Update data is success',
+        //         'data' => $update
+        //         ]
+        //     );
+        return redirect()->route('project.index')
+                         ->with('success', 'Project created successfully!');
             
         }
         

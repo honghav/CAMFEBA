@@ -113,11 +113,11 @@
                         </div>
                         
                         <div class="modal-footer">
-                            {{-- <x-primary-button>
+                            <x-primary-button>
                                 Submit
-                            </x-primary-button> --}}
+                            </x-primary-button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" >Create</button>
+                            {{-- <button type="submit" class="btn btn-primary" >Create</button> --}}
                         </div>
                 </form>
             </div>
