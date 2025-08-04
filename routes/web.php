@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutusPage\AboutsController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfilePage\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsPage\EventsController;
 use App\Http\Controllers\TechnicalPage\LegalCategoryController;
@@ -28,6 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events.main');
     Route::post('/events/store',[EventsController::class,'store'])->name('events.store');
+    Route::get('profile/submembers', [DashboardController::class, 'viewSubmemer'])->name('profile.submembers');
+    Route::get('profile/submembers/create', [DashboardController::class, 'createSubmember'])->name('profile.submembers.create');
+    Route::post('profile/submembers/', [DashboardController::class, 'storeSubmember'])->name('profile.submembers.store');
+    // Route::get('profile', [DashboardController::class, 'index'])->name('profile.index');
 });
 
 

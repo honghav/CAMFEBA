@@ -65,8 +65,13 @@ class User extends Authenticatable
     {
         return $this->role === 'member';
     }
+    // Reletionship fuction
     public function isSubMember(): HasOne
     {
         return $this->hasOne(Members::class, 'user_id', 'id');
+    }
+    public function submembers()
+    {
+        return $this->hasMany(SubMember::class);
     }
 }
