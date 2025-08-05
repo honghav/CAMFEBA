@@ -10,11 +10,13 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <!-- BladeWind UI -->
     <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet" />
     
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
     {{-- <script src="{{ asset('vendor/bladewind/js/bladewind-ui.min.js') }}"></script> --}}
@@ -52,7 +54,7 @@
                     <li><a href="{{route('table.index')}}"> Proflie</a></li>
                 </ul>
             {{-- </div> --}}
-       <div class="relative group flex items-center">
+        {{-- <div class="relative group flex items-center">
             <a href="{{ route('project.index') }}" class="hover:text-black">
                 About Us
             </a>
@@ -60,7 +62,7 @@
                 <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
                     <path d="M5.5 7l4.5 4 4.5-4H5.5z"/>
                 </svg>
-            </div>
+        </div> --}}
 
             <div
                 class="absolute mt-6 w-60 bg-white rounded shadow-lg text-gray-800 z-20 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200">

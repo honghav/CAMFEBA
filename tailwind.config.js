@@ -14,6 +14,10 @@ export default {
             fontFamily: {
                 sans: ['Source Sans Pro', 'sans-serif'],
             },
+            colors:{
+                primaryRed: '#d32a2a',
+                primaryBlue: '#002870',
+            }
         },
     },
 
