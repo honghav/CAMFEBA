@@ -22,12 +22,8 @@ class LayoutsRepository implements LayoutsRepositoryInterface
     }
     public function updateLayout($id, array $data)
     {
-        $layout = Layouts::find($id);
-        if ($layout) {
-            $layout->update($data);
-            return $layout;
-        }
-        return null;
+        $update = $this->getLayoutById($id);
+        return $update->update($data);
     }
     public function deleteLayout($id)
     {
@@ -37,5 +33,9 @@ class LayoutsRepository implements LayoutsRepositoryInterface
             return true;
         }
         return false;
+    }
+    public function getLayoutByPage($page)
+    {
+        return Layouts::select('file_path' , 'name')->where('type', $page)->first();
     }
 }

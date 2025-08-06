@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('type')->default('default');
             $table->string('file_path')->nullable();
-            // $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

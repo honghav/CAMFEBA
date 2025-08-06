@@ -56,6 +56,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repository\Interface\SubmemberRepositoryInterface::class,
             \App\Repository\SubmemberRepository::class
         );
+        $this->app->bind(
+            \App\Repository\Interface\LayoutsRepositoryInterface::class,
+            \App\Repository\LayoutsRepository::class
+        );
 
     }
 

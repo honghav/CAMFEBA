@@ -8,6 +8,7 @@ use App\Http\Controllers\TechnicalPage\LegalCategoryController;
 use App\Http\Controllers\ProjectPage\ProjectController;
 use App\Http\Controllers\TechnicalPage\DocumentController;
 use App\Http\Controllers\Homepage\HomeController;
+use App\Http\Controllers\LayoutsPage\LayoutsController;
 use App\Models\LegalCategory;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::post('profile/submembers/', [DashboardController::class, 'storeSubmember'])->name('profile.submembers.store');
     // Route::get('profile', [DashboardController::class, 'index'])->name('profile.index');
 });
-
+Route::resource('layouts', LayoutsController::class);
+// Route::get('/layouts', [LayoutsController::class, 'index'])->name('layouts.index');
+// Route::post('/layouts', [LayoutsController::class, 'store'])->name('layouts.store');
+// Route::put('/layouts/{id}', [LayoutsController::class, 'update'])->name('layouts.update');
 Route::get('/homepage', [HomeController::class, 'index'])->name('homepage');
 Route::resource('/aboutus',AboutsController::class);
 Route::resource('/service',LegalCategoryController::class);

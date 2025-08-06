@@ -2,7 +2,6 @@
 @section('content')
 
 <div class="bg-gray-200 flex flex-col items-center">
-    {{-- Header Image --}}
     {{-- Slide Show --}}
     <div class="h-[500px] w-[full] ">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -12,14 +11,28 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner bg-gray-200 " >
+                {{-- Slide 1  --}}
                 <div class="carousel-item active">
-                <img class="d-block h-[500px] w-full" src=" {{asset('storage/images/coverService.jpg')}}" alt="First slide">
+                    <img class="d-block h-[500px] w-full" 
+                    src="{{ $l1->file_path ? asset('storage/' . $l1->file_path) : asset('storage/images/coverService.jpg') }}"
+                    alt="{{ $l1->name }}"
+                    onerror="this.onerror=null;this.src='{{ asset('storage/images/coverService.jpg') }}'"
+                    >
                 </div>
+                {{-- Slide 2 --}}
                 <div class="carousel-item">
-                <img class="d-block h-[500px] w-full" src="/images/slide2.jpg" alt="Second slide">
-                </div>
+                <img class="d-block h-[500px] w-full" 
+                    src="{{ $l2->file_path ? asset('storage/' . $l2->file_path) : asset('storage/images/coverService.jpg') }}"
+                    alt="{{ $l2->name }}"
+                    onerror="this.onerror=null;this.src='{{ asset('storage/images/coverService.jpg') }}'"
+                    >                </div>
+                {{-- Slide 3 --}}
                 <div class="carousel-item">
-                <img class="d-block h-[500px] w-full" src="/images/slide3.jpg" alt="Third slide">
+                    <img class="d-block h-[500px] w-full" 
+                    src="{{ $l3->file_path ? asset('storage/' . $l3->file_path) : asset('storage/images/coverService.jpg') }}"
+                    alt="{{ $l3->name }}"
+                    onerror="this.onerror=null;this.src='{{ asset('storage/images/coverService.jpg') }}'"
+                    >                
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -32,7 +45,6 @@
             </button>
         </div>
     </div>
-
     {{-- Who We Are Path --}}
     <div>
         {{-- title path --}}

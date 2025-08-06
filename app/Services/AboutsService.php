@@ -41,8 +41,5 @@ class AboutsService
     public function deleteAboutById($id)
     {
         return $this->aboutsRepository->deleteAboutById($id);
-    }
-
-    
-    
+    }  
 }

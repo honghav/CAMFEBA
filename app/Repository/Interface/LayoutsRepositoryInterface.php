@@ -8,4 +8,5 @@ Interface LayoutsRepositoryInterface
     public function createLayout(array $data);
     public function updateLayout($id, array $data);
     public function deleteLayout($id);
+    public function getLayoutByPage($page);
 }
