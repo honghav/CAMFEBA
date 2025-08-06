@@ -45,7 +45,7 @@
             </div>
             {{-- <div class="flex  w-full h-[60px] border border-solid border-black"> --}}
                  <ul class="flex justify-between  font-sans font-semibold text-[18px] px-4 py-2 text-[#002870] mr-[15px] ml-[15px]">
-                    <li><a href="{{route('homepage')}}">Home</a></li>
+                    <li><a href="{{route('homepage.index')}}">Home</a></li>
                     <li><a href="{{route('aboutus.index')}}">About Us</a></li>
                     <li><a href="#">Technical Assistance</a></li>
                     <li><a href="{{route('events')}}">Events</a></li>

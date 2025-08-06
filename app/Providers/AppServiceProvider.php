@@ -60,6 +60,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repository\Interface\LayoutsRepositoryInterface::class,
             \App\Repository\LayoutsRepository::class
         );
+        $this->app->bind(
+            \App\Repository\Interface\QouteRepositoryInterface::class,
+            \App\Repository\QouteRepository::class
+        );
 
     }
 

@@ -86,77 +86,91 @@
     <div class="">
         {{-- title path --}}
         <h1 class="text-[48px] text-center font-sans text-[#002870] font-bold m-[10px]">What Member Say About Us?</h1>
+        @auth
+        @if(auth()->user()->isUser())
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">
+        Add New Item
+        </button>
+        @endif
+        @endauth
         {{-- body path --}}
-        <div class="w-[1350px] h-[600px] bg-[#ffff] justify-center items-center rounded-xl shadow-xl flex flex-col">
-            <div class="grid grid-cols-2 grid-rows-2 gap-4">
-                {{-- Card Qouter --}}
-                <div class="bg-[#ffffff] w-[650px] h-[250px] rounded-xl content-center shadow-xl">
-                    <div class="flex content-center ml-[5px]">
-                        <div class="">
-                            <img class="d-block h-[220px] w-[220px] rounded-lg" src=" {{asset('storage/images/coverService.jpg')}}" alt="Qoutation">
-                        </div>
-                        <div class="font-sans ml-[10px] w-[400px] ">
-                            <h1 class="font-bold text-[28px] text-[#002870]">Mr.Sar Kinal</h1>
-                            <p class="text-[18px] mb-[5px]">Managing Director Of Aplus Consalting</p>
-                            <div style="width: 400px; height: 150px; overflow: auto;" class="text-[#002870] text-[18px]">
-                                <p>"<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia ut nobis totam, culpa soluta. Magnam, praesentium ipsam sint minus doloribus tenetur eligendi tempora quos quasi animi maiores quam dolor?<br>"</p>
-                            </div>
-                        </div>
-                        
+        <div class="w-[1350px] h-[600px] bg-white justify-center items-center rounded-xl shadow-xl flex flex-col">
+    <!-- Card Container Grid -->
+        <div class="grid grid-cols-2 grid-rows-2 gap-4 p-4 overflow-y-auto">
+            @foreach ($selectQoute as $qoute)
+                <div class="bg-white w-[650px] h-[250px] rounded-xl shadow-xl flex p-4">
+                    <!-- Image -->
+                    <div>
+                        <img class="h-[220px] w-[220px] rounded-lg object-cover" 
+                            src="{{ $qoute->file_path ? asset('storage/' . $qoute->file_path) : asset('storage/images/coverService.jpg') }}"
+                            alt="{{ $qoute->name }}"
+                            onerror="this.onerror=null;this.src='{{ asset('storage/images/coverService.jpg') }}'">
                     </div>
 
+                    <!-- Text Content -->
+                    <div class="ml-4 w-[400px] font-sans">
+                        <h1 class="font-bold text-[28px] text-[#002870]">{{ $qoute->name }}</h1>
+                        <p class="text-[18px] mb-[5px]">{{ $qoute->from }}</p>
+                        <div class="text-[#002870] text-[18px] overflow-auto" style="max-height: 130px;">
+                            <p>"<br>{{ $qoute->description }}<br>"</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-[#ffffff] w-[650px] h-[250px] rounded-xl content-center shadow-xl">
-                    <div class="flex content-center ml-[5px]">
-                        <div class="">
-                            <img class="d-block h-[220px] w-[220px] rounded-lg" src=" {{asset('storage/images/coverService.jpg')}}" alt="Qoutation">
-                        </div>
-                        <div class="font-sans ml-[10px] w-[400px] ">
-                            <h1 class="font-bold text-[28px] text-[#002870]">Mr.Sar Kinal</h1>
-                            <p class="text-[18px] mb-[5px]">Managing Director Of Aplus Consalting</p>
-                            <div style="width: 400px; height: 150px; overflow: auto;" class="text-[#002870] text-[18px]">
-                                <p>"<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia ut nobis totam, culpa soluta. Magnam, praesentium ipsam sint minus doloribus tenetur eligendi tempora quos quasi animi maiores quam dolor?<br>"</p>
-                            </div>
-                        </div>
-                        
-                    </div>
+            @endforeach
+        
 
-                </div>
-                <div class="bg-[#ffffff] w-[650px] h-[250px] rounded-xl content-center shadow-xl">
-                    <div class="flex content-center ml-[5px]">
-                        <div class="">
-                            <img class="d-block h-[220px] w-[220px] rounded-lg" src=" {{asset('storage/images/coverService.jpg')}}" alt="Qoutation">
-                        </div>
-                        <div class="font-sans ml-[10px] w-[400px] ">
-                            <h1 class="font-bold text-[28px] text-[#002870]">Mr.Sar Kinal</h1>
-                            <p class="text-[18px] mb-[5px]">Managing Director Of Aplus Consalting</p>
-                            <div style="width: 400px; height: 150px; overflow: auto;" class="text-[#002870] text-[18px]">
-                                <p>"<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia ut nobis totam, culpa soluta. Magnam, praesentium ipsam sint minus doloribus tenetur eligendi tempora quos quasi animi maiores quam dolor?<br>"</p>
+                    {{-- </div>
+                    <div class="bg-[#ffffff] w-[650px] h-[250px] rounded-xl content-center shadow-xl">
+                        <div class="flex content-center ml-[5px]">
+                            <div class="">
+                                <img class="d-block h-[220px] w-[220px] rounded-lg" src=" {{asset('storage/images/coverService.jpg')}}" alt="Qoutation">
                             </div>
-                        </div>
-                        
-                    </div>
-
-                </div>
-                <div class="bg-[#ffffff] w-[650px] h-[250px] rounded-xl content-center shadow-xl">
-                    <div class="flex content-center ml-[5px]">
-                        <div class="">
-                            <img class="d-block h-[220px] w-[220px] rounded-lg" src=" {{asset('storage/images/coverService.jpg')}}" alt="Qoutation">
-                        </div>
-                        <div class="font-sans ml-[10px] w-[400px] ">
-                            <h1 class="font-bold text-[28px] text-[#002870]">Mr.Sar Kinal</h1>
-                            <p class="text-[18px] mb-[5px]">Managing Director Of Aplus Consalting</p>
-                            <div style="width: 400px; height: 150px; overflow: auto;" class="text-[#002870] text-[18px]">
-                                <p>"<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia ut nobis totam, culpa soluta. Magnam, praesentium ipsam sint minus doloribus tenetur eligendi tempora quos quasi animi maiores quam dolor?<br>"</p>
+                            <div class="font-sans ml-[10px] w-[400px] ">
+                                <h1 class="font-bold text-[28px] text-[#002870]">Mr.Sar Kinal</h1>
+                                <p class="text-[18px] mb-[5px]">Managing Director Of Aplus Consalting</p>
+                                <div style="width: 400px; height: 150px; overflow: auto;" class="text-[#002870] text-[18px]">
+                                    <p>"<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia ut nobis totam, culpa soluta. Magnam, praesentium ipsam sint minus doloribus tenetur eligendi tempora quos quasi animi maiores quam dolor?<br>"</p>
+                                </div>
                             </div>
+                            
                         </div>
-                        
-                    </div>
 
+                    </div>
+                    <div class="bg-[#ffffff] w-[650px] h-[250px] rounded-xl content-center shadow-xl">
+                        <div class="flex content-center ml-[5px]">
+                            <div class="">
+                                <img class="d-block h-[220px] w-[220px] rounded-lg" src=" {{asset('storage/images/coverService.jpg')}}" alt="Qoutation">
+                            </div>
+                            <div class="font-sans ml-[10px] w-[400px] ">
+                                <h1 class="font-bold text-[28px] text-[#002870]">Mr.Sar Kinal</h1>
+                                <p class="text-[18px] mb-[5px]">Managing Director Of Aplus Consalting</p>
+                                <div style="width: 400px; height: 150px; overflow: auto;" class="text-[#002870] text-[18px]">
+                                    <p>"<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia ut nobis totam, culpa soluta. Magnam, praesentium ipsam sint minus doloribus tenetur eligendi tempora quos quasi animi maiores quam dolor?<br>"</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <div class="bg-[#ffffff] w-[650px] h-[250px] rounded-xl content-center shadow-xl">
+                        <div class="flex content-center ml-[5px]">
+                            <div class="">
+                                <img class="d-block h-[220px] w-[220px] rounded-lg" src=" {{asset('storage/images/coverService.jpg')}}" alt="Qoutation">
+                            </div>
+                            <div class="font-sans ml-[10px] w-[400px] ">
+                                <h1 class="font-bold text-[28px] text-[#002870]">Mr.Sar Kinal</h1>
+                                <p class="text-[18px] mb-[5px]">Managing Director Of Aplus Consalting</p>
+                                <div style="width: 400px; height: 150px; overflow: auto;" class="text-[#002870] text-[18px]">
+                                    <p>"<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia ut nobis totam, culpa soluta. Magnam, praesentium ipsam sint minus doloribus tenetur eligendi tempora quos quasi animi maiores quam dolor?<br>"</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div> --}}
                 </div>
             </div>
         </div>
-    </div>
     {{-- Path of Event --}}
     <div class="">
         {{-- title path --}}
@@ -175,7 +189,13 @@
                 <div class="h-full w-2/5 flex flex-col p-4  rounded-lg bg-gradient-to-r from-primaryBlue to-primaryRed">
                     <h2 class="font-sans text-[36px] text-center font-bold text-white ">Upcoming And Past Events</h2>
                     {{-- detail list --}}
+                    @foreach ($events as $event )    
                     <div class=" border-b-4 mt-[25px]" >
+                        <h3 class="font-sans font-semibold text-white text-[24px]">{{$event->title}}</h3>
+                        <p class="font-sans text-gray-300 text-[16px]">Date: {{$event->start_date}}</p>
+                    </div>
+                    @endforeach
+                    {{-- <div class=" border-b-4 mt-[25px]" >
                         <h3 class="font-sans font-semibold text-white text-[24px]">Title Evetns</h3>
                         <p class="font-sans text-gray-300 text-[16px]">Date</p>
                     </div>
@@ -187,13 +207,9 @@
                         <h3 class="font-sans font-semibold text-white text-[24px]">Title Evetns</h3>
                         <p class="font-sans text-gray-300 text-[16px]">Date</p>
                     </div>
-                    <div class=" border-b-4 mt-[25px]" >
-                        <h3 class="font-sans font-semibold text-white text-[24px]">Title Evetns</h3>
-                        <p class="font-sans text-gray-300 text-[16px]">Date</p>
-                    </div>
-                    
+                     --}}
                     <div class="mt-5 justify-cente ">
-                        <x-bladewind::button class="bg-[#002870]">See more Events</x-bladewind::button>
+                        <x-bladewind::button class="bg-[#002870]"><a href="{{route('events')}}">See more Events</a></x-bladewind::button>
                     </div>
                 </div>
 
@@ -203,6 +219,67 @@
         </div>
     </div>
 
+
+    <!-- Modal -->
+<div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{{ route('homepage.store') }}" method="POST" enctype="multipart/form-data" class="modal-content">
+        @csrf
+
+        <div class="modal-header">
+            <h5 class="modal-title" id="addItemModalLabel">Add New Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            {{-- Name (Required) --}}
+            <div class="mb-3">
+            <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                    id="name" name="name" value="{{ old('name') }}" required maxlength="255">
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            </div>
+
+            {{-- File Upload (Optional) --}}
+            <div class="mb-3">
+            <label for="file_path" class="form-label">File (jpg, png, gif, svg - max 2MB)</label>
+            <input type="file" class="form-control @error('file_path') is-invalid @enderror" 
+                    id="file_path" name="file_path" accept=".jpg,.jpeg,.png,.gif,.svg">
+            @error('file_path')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            </div>
+
+            {{-- Description (Optional) --}}
+            <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control @error('description') is-invalid @enderror" 
+                        id="description" name="description" rows="3" maxlength="1000">{{ old('description') }}</textarea>
+            @error('description')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            </div>
+
+            {{-- Form (Optional) --}}
+            <div class="mb-3">
+            <label for="form" class="form-label">Form</label>
+            <input type="text" class="form-control @error('form') is-invalid @enderror" 
+                    id="form" name="from" value="{{ old('from') }}" maxlength="255">
+            @error('form')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        </form>
+    </div>
+    </div>
 
 </div>
 @endsection

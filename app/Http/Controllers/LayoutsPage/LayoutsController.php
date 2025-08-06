@@ -90,12 +90,12 @@ class LayoutsController extends Controller
         // dd($request->file('file_path'), $validated);
         $this->layoutsService->updateLayoutById($id, $validated);
         
-        return response()->json([
-            'success' => true,
-            'message' => 'Layout updated successfully!',
-            'data' => $validated
-        ]);
-        // return redirect()->route('layouts.index')->with('success', 'Layout created successfully!');
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Layout updated successfully!',
+        //     'data' => $validated
+        // ]);
+        return redirect()->route('layouts.index')->with('success', 'Layout created successfully!');
         }
 
 
