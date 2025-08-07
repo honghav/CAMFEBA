@@ -32,4 +32,10 @@ class AboutsRepository implements AboutsRepositoryInterface
             $getAbout = $this->getAboutById($id);
             return $getAbout->delete();
         }
+        public function selectAboutHome()
+        {
+            // $page = 'whatis';
+            $getAboutus = Abouts::where('title', 'whatis')->first();
+            return $getAboutus;
+        }
 }

@@ -5,16 +5,25 @@ namespace App\Http\Controllers\AboutusPage;
 use App\Http\Requests\AboutUsRequestForm;
 use App\Models\Abouts;
 use App\Http\Controllers\Controller;
+use App\Models\Executive;
 use App\Services\AboutsService;
+use App\Services\LayoutsService;
+
 use Illuminate\Http\Request;
+use App\Services\ExcecutiveSevice;
+use App\Http\Requests\ExcecutiveRequest;
 
 class AboutsController extends Controller
 {
     public $aboutsService;
+    protected $executiveService;
+    protected $layoutsService;
 
-    public function __construct(AboutsService $aboutsService)
+    public function __construct(AboutsService $aboutsService,ExcecutiveSevice $executiveService, LayoutsService $layoutsService)
     {
         $this->aboutsService = $aboutsService;
+        $this->executiveService = $executiveService;
+        $this->layoutsService = $layoutsService;
     }
     /**
      * Display a listing of the resource.
@@ -27,6 +36,20 @@ class AboutsController extends Controller
         return view('AboutUs.main_aboutus', compact('AboutUs'));
 
     }
+    public function indexExcetive()
+    {
+        $layout = 'about';
+        // Select President
+        $president = $this->executiveService->getPresident();
+        // Select all bord 
+        $memberbord = $this->executiveService->getBord();
+        // Select layout 
+        // $l1 = $this->layoutsService->selectLayoutByPage($namepage1);
+
+        $bg = $this->layoutsService->selectLayoutByPage($layout);
+
+        return view('AboutUs.executive_page', compact('president', 'memberbord', 'bg'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,8 +58,6 @@ class AboutsController extends Controller
     {
         //
             return view('AboutUs.form');
-
-
     }
 
     /**

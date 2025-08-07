@@ -9,5 +9,5 @@
         public function getAboutById(int $id);
         public function updateAbout(int $id, array $data);
         public function deleteAboutById(int $id);
-
+        public function selectAboutHome();
     }

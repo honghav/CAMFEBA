@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('layouts', function (Blueprint $table) {
+        Schema::create('executives', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->long('description')->nullable();
-            $table->string('type')->default('default');
+            $table->string('name')->nullable();
             $table->string('file_path')->nullable();
+            $table->string('role')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('layouts');
+        Schema::dropIfExists('executives');
     }
 };

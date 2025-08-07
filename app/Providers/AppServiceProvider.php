@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repository\ExcecutiveRepository;
+use App\Repository\Interface\ExcecutiveRepositoryInterface;
 use App\Repository\AboutsRepository;
 use App\Repository\DashboardRepository;
 use App\Repository\EventsRepository;
@@ -64,7 +66,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repository\Interface\QouteRepositoryInterface::class,
             \App\Repository\QouteRepository::class
         );
-
+        $this->app->bind(
+            ExcecutiveRepositoryInterface::class,
+            ExcecutiveRepository::class
+        );
     }
 
     /**

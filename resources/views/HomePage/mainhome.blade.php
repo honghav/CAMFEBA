@@ -52,8 +52,8 @@
         {{-- body path --}}
         <div class="w-full h-[242px] bg-gray-200 justify-center items-center flex ">
             <div class="w-[1350px] h-[242px] bg-[#ffff] justify-center items-center rounded-xl shadow-xl flex flex-col">
-                <p class="w-[1200px] h-[128px] font-sans font-semibold">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut ipsum esse reprehenderit repellat libero debitis sequi similique aperiam a molestias dolores molestiae odit possimus amet, officiis placeat reiciendis nemo quaerat.</p>
-                <x-bladewind::button class="bg-[#002870]">Read more</x-bladewind::button>
+                <p class="w-[1200px] h-[128px] font-sans font-semibold">{{$what->content}}</p>
+                <x-bladewind::button class="bg-[#002870]"><a href="{{route('events')}}">Read more</a></x-bladewind::button>
             </div>
         </div>
     </div>

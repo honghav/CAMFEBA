@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\LayoutsService;
 use App\Services\QouteService;
 use App\Http\Requests\QouteRequest;
+use App\Services\AboutsService;
 use App\Services\EventsService;
 use Illuminate\Support\Str;
 class HomeController extends Controller
@@ -14,12 +15,14 @@ class HomeController extends Controller
     protected $layoutsService;
     protected $qouteService;
     protected $eventsService;
-    public function __construct(LayoutsService $layoutsService, QouteService $qouteService , EventsService $eventsService )
+    protected $aboutusService;
+    public function __construct(LayoutsService $layoutsService, QouteService $qouteService , EventsService $eventsService, AboutsService $aboutusService)
     {
         $this->qouteService = $qouteService; // Injecting the QouteService to handle quote-related operations
         // Injecting the LayoutsService to handle layout-related operations
         $this->eventsService = $eventsService; // Injecting the EventsService to handle event-related operations
-        $this->layoutsService = $layoutsService;        
+        $this->layoutsService = $layoutsService; 
+        $this->aboutusService = $aboutusService;       
     }
     public function index()
     {
@@ -34,7 +37,9 @@ class HomeController extends Controller
         $selectQoute = $this->qouteService->getAllQoutes(); // Fetching all quotes
         // Select events for the homepage
         $events = $this->eventsService->getAllEvent(); // Fetching all events
-        return view('Homepage.mainhome' ,compact('l1', 'l2', 'l3', 'selectQoute', 'events'));
+        // Select what member Say?
+        $what = $this->aboutusService->WhatmemberSay();
+        return view('Homepage.mainhome' ,compact('l1', 'l2', 'l3', 'selectQoute', 'events', 'what'));
     }
     public function store(QouteRequest $request)
     {

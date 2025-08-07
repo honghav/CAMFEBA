@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('profile/submembers/', [DashboardController::class, 'storeSubmember'])->name('profile.submembers.store');
     // Route::get('profile', [DashboardController::class, 'index'])->name('profile.index');
 });
+Route::get('executive',[AboutsController::class, 'indexExcetive'])->name('executive.index');
 Route::resource('layouts', LayoutsController::class);
 // Route::get('/layouts', [LayoutsController::class, 'index'])->name('layouts.index');
 // Route::post('/layouts', [LayoutsController::class, 'store'])->name('layouts.store');

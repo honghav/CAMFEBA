@@ -29,7 +29,8 @@
     <!-- Display existing about us content -->
     @foreach ($AboutUs as $about)
         <div class="mb-6 mt-10border-b pb-4">
-            <h1 class="text-xl font-bold mb-2">{{ $about->title }}</h1>
+            <h1 class="text-[48px] text-center font-sans text-[#002870] font-bold m-[10px]">{{ $about->title }}</h1>
+            {{-- <h1 class="text-xl font-bold mb-2"></h1> --}}
             <div class="prose">{!! $about->content !!}</div>
             <x-primary-button><a href="{{ route('aboutus.edit', $about->id) }}" class="btn btn-primary">Edit</a></x-primary-button>
             <br>
@@ -53,25 +54,21 @@
                 <h5 class="modal-title" id="importModalLabel">Create New About Us</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                <form action="{{ isset($about) ? route('aboutus.update', ['aboutu' => $about->id]) : route('aboutus.store') }}" method="POST" class="mb-6">
+                <form action="{{ route('aboutus.store') }}" method="POST" class="mb-6">
                     @csrf
-
-                    @if(isset($about))
-                        @method('PUT')
-                    @endif
 
                     <div class="mb-4">
                         <label class="block font-semibold mb-1">Title:</label>
-                        <input type="text" name="title" value="{{ old('title', $about->title ?? '') }}" required class="border rounded w-full p-2">
+                        <input type="text" name="title"  required class="border rounded w-full p-2">
                     </div>
 
                     <div class="mb-4">
                         <label class="block font-semibold mb-1">Content:</label>
-                        <textarea name="content" id="editor">{{ old('content', $about->content ?? '') }}</textarea>
+                        <textarea name="content" id="editor"></textarea>
                     </div>
 
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-                        {{ isset($about) ? 'Update' : 'Save' }}
+                        Save
                     </button>
                 </form>
             </div>

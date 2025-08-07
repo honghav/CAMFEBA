@@ -14,7 +14,11 @@ class AboutsService
     {
         $this->aboutsRepository = $aboutsRepository;
     }
-
+    public function WhatmemberSay()
+    {
+        $page = 'whatis';
+        return $this->aboutsRepository->selectAboutHome($page);
+    }
     public function selectAbout()
     {
         return $this->aboutsRepository->getAllAbout();

@@ -36,6 +36,6 @@ class LayoutsRepository implements LayoutsRepositoryInterface
     }
     public function getLayoutByPage($page)
     {
-        return Layouts::select('file_path' , 'name')->where('type', $page)->first();
+        return Layouts::where('type', $page)->first();
     }
 }
