@@ -16,13 +16,13 @@ class Documents extends Model
         'published_at',
         'type',
         'status', // free, paid
-        'legal_category_id'
+        'technical_id'
     ];
     protected $casts = [
         'published_at' => 'datetime'
     ];
     public function legalCategory()
     {
-        return $this->belongsTo(LegalCategory::class, 'legal_category_id');
+        return $this->belongsTo(Technicals::class,);
     }
 }

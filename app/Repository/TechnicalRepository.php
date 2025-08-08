@@ -6,9 +6,9 @@ use App\Models\Technicals;
 
 class TechnicalRepository implements TechnicalRepositoryInterface
 {
-    public function getAllTechnicals()
+    public function getAllTechnicals($category_page)
     {
-        return Technicals::all();
+        return Technicals::where('category_page',$category_page)->get();
     }
 
     public function getTechnicalById($id)
@@ -32,5 +32,10 @@ class TechnicalRepository implements TechnicalRepositoryInterface
     {
         $technical = Technicals::findOrFail($id);
         return $technical->delete();
+    }
+    public function getAllTechnicalsBytype($type)
+    {
+        $technical = Technicals::where('category_page', $type)->get();
+        return $technical;
     }
 }

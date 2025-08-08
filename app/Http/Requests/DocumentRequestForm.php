@@ -29,7 +29,7 @@ class DocumentRequestForm extends FormRequest
             'published_at' => ['nullable', 'date'],
             'type' => ['required', 'string', 'in:Royal_kram,Sub_decree,Ministry_order,Other'],
             'status' => ['required', 'in:free,paid'],
-            'legal_category_id' => ['required', 'exists:legal_categories,id'],
-        ];
+            'technical_id' => ['required', 'integer', 'exists:technicals,id'],
+            ];
     }
 }

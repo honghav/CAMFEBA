@@ -4,18 +4,25 @@ namespace App\Http\Controllers\TechnicalPage;
 
 use App\Http\Requests\CatLegalFormRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DocumentRequestForm;
 use App\Models\LegalCategory;
 use Illuminate\Http\Request;
 use App\Services\CategoryLegalService;
+use App\Services\DocumentsService;
+use App\Services\TechnicalsService;
 use Illuminate\Support\Facades\Log;
 
 class LegalCategoryController extends Controller
 {
     public $legalCategoryService;
+    public $technicalsService;
+    public $documentService;
 
-    public function __construct(CategoryLegalService $legalCategoryService)
+    public function __construct(CategoryLegalService $legalCategoryService, TechnicalsService $technicalsService, DocumentsService $documentService)
     {
         $this->legalCategoryService = $legalCategoryService;
+        $this->technicalsService = $technicalsService;
+        $this->documentService = $documentService;
     }
 
     /**
@@ -24,8 +31,11 @@ class LegalCategoryController extends Controller
     public function index()
     {
         //
-        $categories = $this->legalCategoryService->getAllCategories();
-        return view('ServicePage.legalcategory', compact('categories'));
+        $technical = 'legal';
+        $selectTechnical = $this->technicalsService->getAll($technical);
+        $category = $this->technicalsService->categorypage($technical);
+
+        return view('ServicePage.DocumentLegal.legal_regulation', compact('selectTechnical','category'));
     }
 
     /**
@@ -40,42 +50,34 @@ class LegalCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CatLegalFormRequest $request)
+    public function store(DocumentRequestForm $request)
     {
-        try {
+    
             $validated = $request->validated();
             
-            // Debug validation data
-            Log::info('Validation passed:', $validated);
-            
-            $result = $this->legalCategoryService->createCategory($validated);
-            
-            if ($result['success']) {
-                return response()->json([
-                    'status' => 'success',
-                    'message' => $result['message'],
-                    'data' => $result['data'] ?? null
-                ], 200);
+            // Handle file uploads
+           if ($request->hasFile('cover')) {
+                $coverFile = $request->file('cover');
+                $coverName = time() . '_' . $coverFile->getClientOriginalName(); // e.g. 1691500000_myimage.jpg
+                $validated['cover'] = $coverFile->storeAs('covers', $coverName, 'public');
             }
 
-            return response()->json([
-                'status' => 'error',
-                'message' => $result['message'],
-                'errors' => $result['errors'] ?? []
-            ], 422);
+            if ($request->hasFile('file_path')) {
+                $file = $request->file('file_path');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // e.g. 1691500000_document.pdf
+                $validated['file_path'] = $file->storeAs('files', $fileName, 'public');
+            }
 
-        } catch (\Exception $e) {
-            Log::error('Category creation failed:', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            
+
+            // Call the service method to create the record, passing validated data including file paths
+            $result = $this->legalCategoryService->createCategory($validated);
+
+            // Return a JSON response indicating success or failure
             return response()->json([
-                'status' => 'error',
-                'message' => 'Failed to create category',
-                'errors' => $request->validator->errors()
-            ], 422);
-        }
+                'success' => true,
+                'message' => 'Document created successfully',
+                'data' => $result,
+            ]);
     }
 
     /**
@@ -84,9 +86,13 @@ class LegalCategoryController extends Controller
     public function show( $id)
     {
         //
-        $category = $this->legalCategoryService->getCategoryById($id);
+        // $page = 
+        $layout = $this->technicalsService->getById($id);
+        // $category = $this->legalCategoryService->getAllCategories();
 
-        return view('ServicePage.legalcategory', compact('category'));
+        $documents = $this->documentService->getDocumentsByCategory($layout->id);
+        // $category = $this->technicalsService->categorypage($page);
+        return view('ServicePage.DocumentLegal.documentpage', compact('documents','layout'));
     }
 
     /**

@@ -4,13 +4,15 @@ use App\Http\Controllers\AboutusPage\AboutsController;
 use App\Http\Controllers\ProfilePage\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsPage\EventsController;
-use App\Http\Controllers\TechnicalPage\LegalCategoryController;
 use App\Http\Controllers\ProjectPage\ProjectController;
-use App\Http\Controllers\TechnicalPage\DocumentController;
 use App\Http\Controllers\Homepage\HomeController;
 use App\Http\Controllers\LayoutsPage\LayoutsController;
+use App\Http\Controllers\TechnicalPage\DocumentController;
+use App\Http\Controllers\TechnicalPage\TechnicalsController;
+use App\Http\Controllers\TechnicalPage\LegalCategoryController;
 use App\Models\LegalCategory;
 use App\Models\Project;
+use App\Models\Technicals;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('profile/submembers/create', [DashboardController::class, 'createSubmember'])->name('profile.submembers.create');
     Route::post('profile/submembers/', [DashboardController::class, 'storeSubmember'])->name('profile.submembers.store');
     // Route::get('profile', [DashboardController::class, 'index'])->name('profile.index');
+    Route::get('/document/download/{id}', [DocumentController::class, 'download'])->name('documents.download');
+
 });
 Route::get('executive',[AboutsController::class, 'indexExcetive'])->name('executive.index');
 Route::resource('layouts', LayoutsController::class);
@@ -43,7 +47,7 @@ Route::resource('layouts', LayoutsController::class);
 Route::resource('/homepage', HomeController::class);
 // ('/homepage', [HomeController::class, 'index'])->name('homepage');
 Route::resource('/aboutus',AboutsController::class);
-Route::resource('/service',LegalCategoryController::class);
+Route::resource('/legal',LegalCategoryController::class);
 Route::resource('/project',ProjectController::class);
 Route::resource('/document',DocumentController::class);
 // Route::put('/aboutus/{aboutu}', [AboutsController::class, 'update'])->name('aboutus.update');
@@ -52,7 +56,7 @@ Route::resource('/document',DocumentController::class);
 Route::get('/events', [EventsController::class, 'mainPageEvent'])->name('events');
 Route::get('/events/create',[EventsController::class,'create'])->name('events.create');
 Route::get('/events/{id}', [EventsController::class, 'detailPageEvent'])->name('events.detail');
-
+Route::resource('technical',TechnicalsController::class);
 require __DIR__.'/auth.php';
 Route::middleware(['web'])->group(function () {
 });

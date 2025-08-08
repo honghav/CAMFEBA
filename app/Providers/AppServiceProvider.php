@@ -13,7 +13,9 @@ use App\Repository\Interface\CategoryLegalRepositoryInterface;
 use App\Repository\Interface\DashboardRepositoryInterface;
 use App\Repository\Interface\EventsRepositoryInterface;
 use App\Repository\Interface\ProjectRepositoryInterface;
+use App\Repository\Interface\TechnicalRepositoryInterface;
 use App\Repository\ProjectRepository;
+use App\Repository\TechnicalRepository;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use App\View\Components\EventCardComponent;
@@ -69,6 +71,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ExcecutiveRepositoryInterface::class,
             ExcecutiveRepository::class
+        );
+        $this->app->bind(
+            TechnicalRepositoryInterface::class,
+            TechnicalRepository::class
         );
     }
 

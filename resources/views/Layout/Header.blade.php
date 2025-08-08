@@ -20,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     {{-- <script src="{{ asset('vendor/bladewind/js/bladewind-ui.min.js') }}"></script> --}}
     
     <!-- Define global helper functions -->
@@ -47,7 +48,7 @@
                  <ul class="flex justify-between  font-sans font-semibold text-[18px] px-4 py-2 text-[#002870] mr-[15px] ml-[15px]">
                     <li><a href="{{route('homepage.index')}}">Home</a></li>
                     <li><a href="{{route('aboutus.index')}}">About Us</a></li>
-                    <li><a href="#">Technical Assistance</a></li>
+                    <li><a href="{{route('technical.index')}}">Technical Assistance</a></li>
                     <li><a href="{{route('events')}}">Events</a></li>
                     <li><a href="#">Membership</a></li>
                     <li><a href="{{route('project.index')}}">Project</a></li>

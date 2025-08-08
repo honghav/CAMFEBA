@@ -2,13 +2,14 @@
     'id',
     'title',
     'cover',
+    'route'
 ])
 
-<div class="h-[350px] w-[250px] mr-[20px] rounded-[10px] bg-white flex flex-col items-center text-center shadow-md hover:shadow-lg transition-shadow duration-300">
+<div class="h-[475px] w-[350px] m-[20px] rounded-lg bg-[#ffffff] flex flex-col items-center text-center shadow-md hover:shadow-lg transition-shadow duration-300 ">
     <div class="w-[184px] h-[198px] mt-[5px] justify-center">
-        <a href="{{ route('document.index') }}" class="block w-full h-full">
+        <a href="{{$route}}" class="block w-full h-full">
             <img 
-                src="{{ $cover ? asset('storage/' . $cover) : asset('storage/images/coverService.jpg') }}"
+                src="{{ $cover ? asset($cover) : asset('storage/images/coverService.jpg') }}"
                 alt="{{ $title }}"
                 class="w-full h-full object-cover rounded-[8px]"
                 onerror="this.onerror=null;this.src='{{ asset('storage/images/coverService.jpg') }}'"
@@ -16,9 +17,8 @@
         </a>
     </div>  
     <div class="p-4">
-        <h1 class="font-sans text-[24px] font-semibold mt-[10px] truncate">{{$id}}{{ $title }}</h1>
-        
-        <div class="flex justify-center space-x-2 mt-4">
+        <h1 class="font-sans text-[#002870] text-[28px] font-bold mt-[10px] break-words">{{ $title }}</h1>
+        {{-- <div class="flex justify-center space-x-2 mt-4">
             <x-bladewind::button
                 size="tiny"
                 color="blue"
@@ -34,7 +34,7 @@
             >
                 Delete
             </x-bladewind::button>
-        </div>
+        </div> --}}
     </div>
 </div>
 

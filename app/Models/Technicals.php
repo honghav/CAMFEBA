@@ -13,5 +13,11 @@ class Technicals extends Model
         'description',
         'type',
         'file_path',
+        'category_page',
     ];
+
+    public function documents()
+    {
+        return $this->hasMany(Documents::class, 'technical_id');
+    }
 }

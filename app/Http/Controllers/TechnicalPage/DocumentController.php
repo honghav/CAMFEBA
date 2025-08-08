@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Services\DocumentsService;
 use App\Models\LegalCategory;
 use Illuminate\Container\Attributes\Log;
+// use Illuminate\Container\Attributes\Storage;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log as FacadesLog;
 
 class DocumentController extends Controller
@@ -57,12 +59,28 @@ class DocumentController extends Controller
     {
         //
         $validated = $request->validated();
-        $document = $this->documentService->createDocument($validated);
-        if ($document) {
-            return redirect()->route('document.index')->with('success', 'Document created successfully');
-        } else {
+        // $validated = $request->validated();
+            
+            // Handle file uploads
+           if ($request->hasFile('cover')) {
+                $coverFile = $request->file('cover');
+                $coverName = time() . '_' . $coverFile->getClientOriginalName(); // e.g. 1691500000_myimage.jpg
+                $validated['cover'] = $coverFile->storeAs('covers', $coverName, 'public');
+            }
+
+            if ($request->hasFile('file_path')) {
+                $file = $request->file('file_path');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // e.g. 1691500000_document.pdf
+                $validated['file_path'] = $file->storeAs('files', $fileName, 'public');
+            }
+            // dd($validated);
+            $document = $this->documentService->createDocument($validated);
+            //  return response()->json([
+            //     'success' => true,
+            //     'message' => 'Document created successfully',
+            //     'data' => $document,
+            // ]);
             return redirect()->back()->with('error', 'Failed to create document');
-        }
     }
 
     /**
@@ -72,15 +90,31 @@ class DocumentController extends Controller
     {
         //
         $document = $this->documentService->getDocumentById($id);
-        if ($document) {
-            return view('documents.show', compact('document'));
-        } else {    
-            return redirect()->back()->with('error', 'Document not found');
-        }
+        // if ($document) {
+            return view('ServicePage.DocumentLegal.book_info', compact('document'));
+        // } else {    
+        //     return redirect()->back()->with('error', 'Document not found');
+        // }
 
     }
+    // Downlaod Function 
+    public function download($id)
+    {
+        $document = $this->documentService->getDocumentById($id);
 
-    /**
+        // file_path should be like: files/1691500000_document.pdf
+        $filePath = $document->file_path;
+
+        if (!$filePath || !Storage::disk('public')->exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        // Optional: sanitize title for safe filename
+        $safeTitle = preg_replace('/[^A-Za-z0-9_\-]/', '_', $document->title);
+
+        return Storage::disk('public')->download($filePath, $safeTitle . '.pdf');
+    }
+        /**
      * Show the form for editing the specified resource.
      */
     public function edit($id )

@@ -37,6 +37,7 @@ class DocumentsRepository implements DocumentsRepositoryInterface
 
         public function getDocumentsByCategory($categoryId)
         {
-            return Documents::where('legal_category_id', $categoryId)->get();
+            return Documents::where('technical_id', $categoryId)->get();
         }
+        
     }
